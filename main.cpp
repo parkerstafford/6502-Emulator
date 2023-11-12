@@ -2,9 +2,6 @@
 
 
 struct CPU {
-    using Byte = unsigned char;
-    using Word = unsigned short;
-
     Word PC; // Program Counter
     Word SP;    // Stack Pointer
 
@@ -18,10 +15,19 @@ struct CPU {
     Byte V : 1;
     Byte N : 1;
 
+    void Reset() {
+        PC = 0xFFFC;
+        SP = 0x0100;
+        C = Z = I = D = B = V = N = D = 0;
+        A = X = Y = 0;
+    }
+
 };
 
 int main() {
     CPU cpu;
+
+    cpu.Reset();
 
     return 0;
 }
